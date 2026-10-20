@@ -1,0 +1,932 @@
+{
+  "info": {
+    "name": "Orbi API",
+    "_postman_id": "8f7e31f0-3a6b-41ca-9d03-2d16864ef98a",
+    "description": "Collection para testar a Orbi API (Horse + PostgreSQL).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": []
+        }
+      }
+    },
+    {
+      "name": "Produtos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/produtos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "produtos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ProdutosId",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/ProdutosId/{{codProduto}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "ProdutosId",
+            "{{codProduto}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Inserir Pedido",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"vendas1\": {\n    \"cod_cliente\": {{codCliente}},\n    \"cod_representante\": {{codRep}},\n    \"dta_emissao\": \"{{dataInicial}}\",\n    \"cod_fop\": 1,\n    \"cod_prazo_pgto\": 1,\n    \"observacoes_pedido\": \"Pedido gerado pela API\",\n    \"tot_bruto\": 10,\n    \"tot_liquido\": 10\n  },\n  \"vendas2\": [\n    {\n      \"cod_produto\": {{codProduto}},\n      \"qtd\": 1,\n      \"preco_venda\": 10,\n      \"desconto\": 0,\n      \"preco\": 10\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/pedidos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "pedidos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Todas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Todas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Por Representante",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas?codrep={{codRep}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ],
+          "query": [
+            {
+              "key": "codrep",
+              "value": "{{codRep}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Por Cliente",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas?cod_cliente={{codCliente}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ],
+          "query": [
+            {
+              "key": "cod_cliente",
+              "value": "{{codCliente}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Por Documento",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas?numdoc={{numDoc}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ],
+          "query": [
+            {
+              "key": "numdoc",
+              "value": "{{numDoc}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Por Periodo (dtadoc)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas?data_inicial={{dataInicial}}&data_final={{dataFinal}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ],
+          "query": [
+            {
+              "key": "data_inicial",
+              "value": "{{dataInicial}}"
+            },
+            {
+              "key": "data_final",
+              "value": "{{dataFinal}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Abertas - Busca",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/abertas?filtro={{filtroVendas}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "abertas"
+          ],
+          "query": [
+            {
+              "key": "filtro",
+              "value": "{{filtroVendas}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Por Representante",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas?codrep={{codRep}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ],
+          "query": [
+            {
+              "key": "codrep",
+              "value": "{{codRep}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Por Cliente",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas?cod_cliente={{codCliente}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ],
+          "query": [
+            {
+              "key": "cod_cliente",
+              "value": "{{codCliente}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Por Documento",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas?numdoc={{numDoc}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ],
+          "query": [
+            {
+              "key": "numdoc",
+              "value": "{{numDoc}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Por Periodo (dta_emissao)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas?data_inicial={{dataInicial}}&data_final={{dataFinal}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ],
+          "query": [
+            {
+              "key": "data_inicial",
+              "value": "{{dataInicial}}"
+            },
+            {
+              "key": "data_final",
+              "value": "{{dataFinal}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Vendas Detalhadas Faturadas - Busca",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/vendas/detalhadas/faturadas?filtro={{filtroVendas}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "vendas",
+            "detalhadas",
+            "faturadas"
+          ],
+          "query": [
+            {
+              "key": "filtro",
+              "value": "{{filtroVendas}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Todos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Inserir Cliente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nom_cliente\": \"Cliente Teste API\",\n    \"nom_fantasia\": \"Cliente API\",\n    \"endereco\": \"Rua Teste\",\n    \"nr_endereco\": \"123\",\n    \"complemento\": \"Sala 1\",\n    \"bairro\": \"Centro\",\n    \"cep\": \"00000000\",\n    \"cod_cidade\": 1,\n    \"tip_pessoa\": \"F\",\n    \"telefone\": \"\",\n    \"email\": \"\",\n    \"cpf\": \"\",\n    \"rg\": \"\",\n    \"cnpj\": \"\",\n    \"ie\": \"\",\n    \"im\": \"\",\n    \"contato\": \"\",\n    \"fone_contato\": \"\",\n    \"whastapp\": \"\",\n    \"id_representante\": {{codRep}},\n    \"cod_empresa\": 1\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/clientes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Por Representante",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes?codrep={{codRep}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "codrep",
+              "value": "{{codRep}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Por Codigo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes?cod_cliente={{codCliente}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "cod_cliente",
+              "value": "{{codCliente}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Por Nome",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes?nome={{nomeCliente}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "nome",
+              "value": "{{nomeCliente}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Por Data da Ultima Venda",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes?data_ultima_venda={{dataUltimaVenda}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "data_ultima_venda",
+              "value": "{{dataUltimaVenda}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clientes - Por Periodo da Ultima Venda",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/clientes?data_ultima_venda_inicial={{dataUltimaVendaInicial}}&data_ultima_venda_final={{dataUltimaVendaFinal}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "clientes"
+          ],
+          "query": [
+            {
+              "key": "data_ultima_venda_inicial",
+              "value": "{{dataUltimaVendaInicial}}"
+            },
+            {
+              "key": "data_ultima_venda_final",
+              "value": "{{dataUltimaVendaFinal}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Representantes",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/representantes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "representantes"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Formas de Pagamento",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/formas-pagamento",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "formas-pagamento"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prazos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/prazos",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "prazos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cidades - Todas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cidades",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cidades"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cidades - Por UF",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cidades?uf={{uf}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cidades"
+          ],
+          "query": [
+            {
+              "key": "uf",
+              "value": "{{uf}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cidades - Por Nome",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cidades?nome={{nomeCidade}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cidades"
+          ],
+          "query": [
+            {
+              "key": "nome",
+              "value": "{{nomeCidade}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cidades - Por Codigo",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cidades?cod_cidade={{codCidade}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cidades"
+          ],
+          "query": [
+            {
+              "key": "cod_cidade",
+              "value": "{{codCidade}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dashboard - Meta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-HASH",
+            "value": "{{apiHash}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codRepresentante\": {{codRepresentante}},\n  \"mes\": \"{{mes}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/dashboard/meta",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "dashboard",
+            "meta"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://plasfan.ddns.com.br:9002"
+    },
+    {
+      "key": "apiHash",
+      "value": "ccc5915dd321d8446aecf4dce952adc827ba7833307c0d004dba55c83e0e191f"
+    },
+    {
+      "key": "codProduto",
+      "value": "1"
+    },
+    {
+      "key": "codCliente",
+      "value": "1"
+    },
+    {
+      "key": "numDoc",
+      "value": "1"
+    },
+    {
+      "key": "nomeCliente",
+      "value": "cliente"
+    },
+    {
+      "key": "codCidade",
+      "value": "1"
+    },
+    {
+      "key": "nomeCidade",
+      "value": "sao"
+    },
+    {
+      "key": "uf",
+      "value": "SP"
+    },
+    {
+      "key": "dataUltimaVenda",
+      "value": "2026-01-31"
+    },
+    {
+      "key": "dataUltimaVendaInicial",
+      "value": "2026-01-01"
+    },
+    {
+      "key": "dataUltimaVendaFinal",
+      "value": "2026-01-31"
+    },
+    {
+      "key": "codRep",
+      "value": "1"
+    },
+    {
+      "key": "codRepresentante",
+      "value": "1"
+    },
+    {
+      "key": "mes",
+      "value": "06/2026"
+    },
+    {
+      "key": "dataInicial",
+      "value": "2026-01-01"
+    },
+    {
+      "key": "dataFinal",
+      "value": "2026-01-31"
+    },
+    {
+      "key": "filtroVendas",
+      "value": ""
+    }
+  ]
+}
