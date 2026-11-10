@@ -18,15 +18,22 @@ uses
 
 const
   CProdutosSQL =
-    'select p.cod_produto, p.nom_produto, p.codigo_barra, case when p.qtd_estoque < 0 then 0 else p.qtd_estoque end as qtd_estoque, p.custo, ' +
+    'select p.cod_produto, p.nom_produto, '+
+    'coalesce(p.codigo_barra, (select c.cod_barras '+
+    '                          from cod_barras c '+
+    '                          where c.cod_produto = p.cod_produto '+
+    '                          order by c.id desc limit 1)) as codigo_barra, '+
+    'case when p.qtd_estoque < 0 then 0 else p.qtd_estoque end as qtd_estoque, p.custo, ' +
     'p.preco_venda, p.desconto_maximo ' +
     'from produto p ' +
-    'where p.status <> ''S''';
+    'where p.status <> ''S'' ' ;
   CProdutosIdSQL =
-    'select p.cod_produto, p.nom_produto, p.codigo_barra, case when p.qtd_estoque < 0 then 0 else p.qtd_estoque end as qtd_estoque, p.custo, ' +
+    'select p.cod_produto, p.nom_produto, coalesce(p.codigo_barra, c.cod_barras) as codigo_barra, case when p.qtd_estoque < 0 then 0 else p.qtd_estoque end as qtd_estoque, p.custo, ' +
     'p.preco_venda, p.desconto_maximo ' +
     'from produto p ' +
-    'where p.status <> ''S'' and p.cod_produto = :cod_produto';
+    'left outer join cod_barras c on c.cod_produto = p.cod_produto '+
+    'where p.status <> ''S'' and p.cod_produto = :cod_produto '+
+    'order by c.id desc limit 1 ';
   CVendasDetalhadasBaseSQL =
     'select ' +
     '  v1.numdoc, ' +
